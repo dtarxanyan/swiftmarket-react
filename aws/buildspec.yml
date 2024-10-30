@@ -18,5 +18,5 @@ phases:
             - docker tag swiftmarket-ui:latest 302263068707.dkr.ecr.eu-north-1.amazonaws.com/swiftmarket-ui:latest
             - docker push 302263068707.dkr.ecr.eu-north-1.amazonaws.com/swiftmarket-ui:latest
 artifacts:
-    files:API
-    - '**/*'
+    files:
+        - '**/*'
