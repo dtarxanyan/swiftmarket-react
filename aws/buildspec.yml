@@ -4,13 +4,19 @@ phases:
     install:
         runtime-versions:
             nodejs: 16
+    pre_build:
+        commands:
+            - echo Pre-build started on `date`
+            - echo Logging in to Amazon ECR...
+            - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 302263068707.dkr.ecr.eu-north-1.amazonaws.com
+            - echo Building the Swiftmarket UI ...
     build:
         commands:
             - echo Build started on `date`
             - echo Building the Next.js frontend...
-            - docker build -t swiftmarket-ui .
+            - docker build -f aws/Dockerfile -t swiftmarket-ui .
             - docker tag swiftmarket-ui:latest 302263068707.dkr.ecr.eu-north-1.amazonaws.com/swiftmarket-ui:latest
             - docker push 302263068707.dkr.ecr.eu-north-1.amazonaws.com/swiftmarket-ui:latest
 artifacts:
-    files:
-        - '**/*'
+    files:API
+    - '**/*'
