@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+    app:
+        image: 302263068707.dkr.ecr.eu-north-1.amazonaws.com/swiftmarket-ui:latest
+        ports:
+            - "9000:9000"
+        volumes:
+            - /home/ec2-user/swiftmarket-ui:/var/www
+        networks:
+            - laravel
+networks:
+    laravel:
